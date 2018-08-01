@@ -31,6 +31,7 @@ $config['logger'] = [
     'level' => 7
 ];
 
-$config['db'] = 'mongodb://10.0.0.24:27017?dbname=dx_template';
+//$config['db'] = 'mongodb://10.0.0.24:27017?dbname=dx_template';
+$config['db']='mongodb://10.0.20.190:27017?dbname=db';
 
 return $config;

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ceshi</title>
+</head>
+<body>
+
+
+<script src="https://cdn.bootcss.com/axios/0.18.0/axios.min.js"></script>
+<script>
+
+    console.log(axios);
+    console.log(1);
+
+    axios({
+        url: 'http://10.0.20.190:8090/v1/me',
+        method: 'POST',
+        params: {
+            username: '121231233',
+            password: '2121233q3'
+        }
+    }).then(res => {
+        console.log(res);
+        alert("注册成功");
+    }).catch(err => {
+        console.log(err);
+    });
+
+</script>
+</body>
+</html>
