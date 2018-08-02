@@ -12,11 +12,11 @@ use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
-use App\Console\Test;
+use App\Console\Index;
 
 include __DIR__ . '/../vendor/autoload.php';
-
+$host = require __DIR__ . '/../app/config/urllist.php';
 $application = new Console();
-$application->add(new Test());
+$application->add(new Index($host));
 //$application->setDefaultCommand($command->getName(), true);
 $application->run();
