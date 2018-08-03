@@ -1,12 +1,12 @@
 <?php
-namespace App\Service;
+namespace App\Service\Collection;
 
 use Mx\Service\ServiceAbstract;
 use App\Biz\YivianNews;
 
 /**
  * Class SaveNews
- * @package App\Service
+ * @package App\Service\Collection
  *
  * 存储信息的工厂，根据爬取名字来决定将信息存储到哪一个文档中
  */

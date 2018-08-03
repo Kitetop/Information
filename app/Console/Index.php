@@ -32,7 +32,7 @@ class Index extends CommandAbstract
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         // 调用采集服务
-        $service = $this->service('Collection');
+        $service = $this->service('Collection\Collection');
         $service->host = $this->host;
         $service->run();
     }

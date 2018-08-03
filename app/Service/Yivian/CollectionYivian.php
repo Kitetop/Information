@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Service;
+namespace App\Service\Yivian;
 
 use Mx\Service\ServiceAbstract;
 use QL\QueryList;
 use App\Biz\News;
 
+
 /**
  * Class CollectionYivian
- * @package App\Service
+ * @package App\Service\Yivian
  *
  * 映维网信息采集服务
  */
@@ -17,23 +18,14 @@ class CollectionYivian extends ServiceAbstract
     protected function execute()
     {
         // TODO: Implement execute() method.
+        //给每一个爬取文章设置规则
+        $rules = require __DIR__. '/config.php';
         $news = new News();
         //$service是一个二维数组，存储了提取值的url列表以及标题
-        $service = $this->call('GrabSource', [
+        $service = $this->call('Collection\GrabSource', [
             'url' => $this->url,
             'rules' => $this->rules,
         ]);
-        //给每一个爬取文章设置规则
-        $getContent = [
-            'rules' => [
-                'content' => ['div.entry-inner',
-                    'text',
-                    '-imag 
-                    -div.code-block 
-                    -blockquote 
-                     -p:first'],
-            ],
-        ];
         foreach ($service as $key => $value) {
             $news = $news->dao()->findOne(['url' => $value['url'], 'name' => 'yivian']);
             if (true == $news->exist()) {
@@ -42,16 +34,16 @@ class CollectionYivian extends ServiceAbstract
                 break;
             }
             //当页面全部都是新的内容的时候也应该存储索引
-            if($key === (count($service) - 1)){
+            if ($key === (count($service) - 1)) {
                 //调用存储索引服务
                 $this->addIndex($service[0]['url']);
             }
-            $content = $this->call('GrabSource', [
+            $content = $this->call('Collection\GrabSource', [
                 'url' => $value['url'],
-                'rules' => $getContent['rules']
+                'rules' => $rules,
             ]);
             $content = str_replace(PHP_EOL, '', $content[0]['content']);
-            $this->call('SaveNews', [
+            $this->call('Collection\SaveNews', [
                 'name' => 'yivian',
                 'url' => $value['url'],
                 'title' => $value['title'],
@@ -62,7 +54,7 @@ class CollectionYivian extends ServiceAbstract
 
     private function addIndex($url)
     {
-        $this->call('SaveIndex', [
+        $this->call('Collection\SaveIndex', [
             'url' => $url,
             'name' => 'yivian',
         ]);

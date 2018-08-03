@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Service;
+namespace App\Service\Collection;
 
 use Mx\Service\ServiceAbstract;
 use QL\QueryList;
 
 /**
  * Class GrabSource
- * @package App\Service
+ * @package App\Service\Collection
  *
  * 使用CURL库爬取网页的内容
  */

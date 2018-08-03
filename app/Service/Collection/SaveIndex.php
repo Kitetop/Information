@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Service;
+namespace App\Service\Collection;
 
 use Mx\Service\ServiceAbstract;
 use App\Biz\News;
 
 /**
  * Class SaveIndex
- * @package App\Service
+ * @package App\Service\Collection
  *
  * 存储上次爬取存储的索引，方便及时阻断
  */
