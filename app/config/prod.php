@@ -21,6 +21,14 @@ $config['action'] = [
     'format' => 'json', //默认输出格式
     'namespace' => '\\' . __NAMESPACE__ . '\\Action' //action的子命名空间
 ];
+if (PHP_SAPI !='cli')
+{
+    $config['rootUrl']="http://10.0.20.190:8090";
+    $config['realUrl']=$config['rootUrl'].$config['action']['base'];
+    $config['assetUrl']=$config['rootUrl'].'/assets';
+}else{
+    $config['rootUrl']=$config['realUrl']=$config['assetsUrl']='';
+}
 
 /**
  * 错误日志
@@ -31,7 +39,6 @@ $config['logger'] = [
     'level' => 7
 ];
 
-//$config['db'] = 'mongodb://10.0.0.24:27017?dbname=dx_template';
 $config['db']='mongodb://127.0.0.1:27017?dbname=news';
 
 return $config;
