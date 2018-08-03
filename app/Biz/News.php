@@ -3,7 +3,7 @@ namespace App\Biz;
 
 use Mx\Biz\RowGateway;
 
-class Biz extends RowGateway
+class News extends RowGateway
 {
     public function getTable()
     {
