@@ -6,8 +6,10 @@
 
 $rules = [
     'content' => ['div.entry-inner',
-        'text',
-        '-imag 
+        'html',
+        '-img
+        -nav
+        -a
         -div.code-block 
         -blockquote 
         -p:first'],
