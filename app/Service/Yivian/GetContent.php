@@ -28,9 +28,10 @@ class GetContent extends ServiceAbstract
             'content' => $this->content,
             'paragraph' => $this->paragraph,
         ]);
-        //调用分词服务,传递文本信息
-        $this->call('Formatdata\PullWord',[
-            'data' => $result,
+        //传递文本信息,得到词频信息
+        $word = $this->call('Formatdata\WordResult',[
+            'content' => $result[0][0],
+            'paragraph' =>$result[1],
         ]);
     }
 }
