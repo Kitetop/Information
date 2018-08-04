@@ -20,7 +20,10 @@ $rules ['rules'] = [
  */
 
 $rules ['content'] = [
-
+    'content' => [
+      '',
+      'text',
+    ],
 ];
 
 /**
@@ -28,7 +31,10 @@ $rules ['content'] = [
  */
 
 $rules ['paragraph'] = [
-
+    'paragraph' => [
+        'p',
+        'text',
+    ]
 ];
 
 return $rules;

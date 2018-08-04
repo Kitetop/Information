@@ -4,6 +4,12 @@ namespace App\Service\Yivian;
 
 use Mx\Service\ServiceAbstract;
 
+/**
+ * Class Format
+ * @package App\Service\Yivian
+ *
+ * 映维网文章数据处理的入口文件
+ */
 class Format extends ServiceAbstract
 {
     protected function execute()
@@ -13,8 +19,8 @@ class Format extends ServiceAbstract
         $rules = require __DIR__ . '/config.php';
         $content = $rules['content'];
         $paragraph = $rules['paragraph'];
-        //调用比较服务，传递配置信息
-        $this->call('Formadata\Compare', [
+        //传递配置信息
+        $this->call('Yivian\GetContent', [
             'content' => $content,
             'paragraph' => $paragraph,
         ]);

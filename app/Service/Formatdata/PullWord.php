@@ -15,6 +15,7 @@ class PullWord extends ServiceAbstract
 {
     protected function execute()
     {
+        var_dump($this->data);
         // TODO: Implement execute() method.
     }
 }
