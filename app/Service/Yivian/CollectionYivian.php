@@ -40,7 +40,7 @@ class CollectionYivian extends ServiceAbstract
             }
             $content = $this->call('Collection\GrabSource', [
                 'url' => $value['url'],
-                'rules' => $rules,
+                'rules' => $rules['rules'],
             ]);
             $content = str_replace(PHP_EOL, '', $content[0]['content']);
             $this->call('Collection\SaveNews', [

@@ -21,6 +21,7 @@ class SaveNews extends ServiceAbstract
                     'url' => $this->url,
                     'title' => $this->title,
                     'content' => $this->content,
+                    'format' => false,
                 ])->save();
                 break;
         }

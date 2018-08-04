@@ -8,6 +8,7 @@ use QL\QueryList;
 /**
  * Class GrabSource
  * @package App\Service\Collection
+ * @return 返回根据规则提取到的数组类型信息
  *
  * 使用CURL库爬取网页的内容
  */

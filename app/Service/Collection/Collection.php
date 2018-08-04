@@ -20,11 +20,10 @@ class Collection extends ServiceAbstract
         foreach ($this->host as $key => $value) {
             switch ($key) {
                 case 'yivian':
-                    $service = $this->call('Yivian\CollectionYivian', [
+                    $this->call('Yivian\CollectionYivian', [
                         'url' => $value['url'],
                         'rules' => $value['rules'],
                     ]);
-                    return $service;
                     break;
                 case 'chinaar':
                     $service = $this->call('Collection\CollectionChinaar');
