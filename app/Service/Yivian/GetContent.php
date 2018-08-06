@@ -29,9 +29,13 @@ class GetContent extends ServiceAbstract
             'paragraph' => $this->paragraph,
         ]);
         //传递文本信息,得到词频信息
-        $word = $this->call('Formatdata\WordResult',[
+        $this->call('Formatdata\WordResult', [
+            'object' => $content,
             'content' => $result[0][0],
-            'paragraph' =>$result[1],
+            'paragraph' => $result[1],
+            'url' => $content->url,
+            'title' => $content->title,
+            'id' => $content->id,
         ]);
     }
 }

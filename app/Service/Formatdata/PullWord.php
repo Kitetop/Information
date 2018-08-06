@@ -28,8 +28,8 @@ class PullWord extends ServiceAbstract
             'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36',
 
         );
-        //Pullword Api请求格式
-        $text = urlencode(trim($this->text));
+        //Pullword Api请求格式,避免字符串过长不能截取的问题
+        $text = urlencode(substr(trim($this->text),0,5000));
         $url = 'http://api.pullword.com/get.php?source=' . $text . '&param1=1&param2=1&json=0';
         $source = curl_init();
         curl_setopt($source, CURLOPT_URL, $url);

@@ -3,6 +3,7 @@
 namespace App\Service\Formatdata;
 
 use Mx\Service\ServiceAbstract;
+use App\Biz\Theme;
 
 /**
  * Class WordResult
@@ -17,14 +18,46 @@ class WordResult extends ServiceAbstract
     {
         // TODO: Implement execute() method.
         /**
-         * $content以及$paragraph 的数据结构都是一个一维数组
-         * 存储了关键词以及关键词出现的频率
+         * $this->content 的数据结构是:
+         * $this->content['content'] = 文本内容
+         * $this->paragraph 的数据结构是:
+         * $this->paragraph [$key]['paragraph'] = 文本内容
          */
-        $content = $this->call('Formatdata\PullWord',[
+        //$content 是一个一维数组，存储了关键词以及频度
+        $compare = 0;
+        $valueKey = 0;
+        $content = $this->call('Formatdata\PullWord', [
             'text' => $this->content['content'],
         ]);
-        //对数组开始进行统计
-        var_dump($content);
-        exit();
+        foreach ($this->paragraph as $key => $value) {
+            if ($value['paragraph'] == '') {
+                continue;
+            }
+            $paragraph = $this->call('Formatdata\PullWord', [
+                'text' => $value['paragraph'],
+            ]);
+            $temp = $this->call('Formatdata\Compare', [
+                'content' => $content,
+                'paragraph' => $paragraph,
+            ]);
+            //存储比较值
+           if($compare  < $temp){
+               $compare = $temp;
+               $valueKey = $key;
+           }
+        }
+        //此时$compare的值存储选中的段落信息
+        $theme = new Theme();
+        $theme->articleId = $this->id;
+        $theme->url = $this->url;
+        $theme->title = $this->title;
+        $theme->paragraph = $this->paragraph[$valueKey]['paragraph'];
+        //点击量
+        $theme->count = 0;
+        //是否编辑字段
+        $theme->edit = false;
+        $theme->save();
+        $this->object->format = true;
+        $this->object->save();
     }
 }
