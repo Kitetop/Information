@@ -17,14 +17,13 @@ class WordResult extends ServiceAbstract
     {
         // TODO: Implement execute() method.
         /**
-         * $this->content 的数据结构是:
-         * $this->content['content'] = 文本内容
-         * $this->paragraph 的数据结构是:
-         * $this->paragraph [$key]['paragraph']
+         * $content以及$paragraph 的数据结构都是一个一维数组
+         * 存储了关键词以及关键词出现的频率
          */
         $content = $this->call('Formatdata\PullWord',[
             'text' => $this->content['content'],
         ]);
+        //对数组开始进行统计
         var_dump($content);
         exit();
     }

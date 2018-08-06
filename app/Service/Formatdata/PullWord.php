@@ -30,7 +30,7 @@ class PullWord extends ServiceAbstract
         );
         //Pullword Api请求格式
         $text = urlencode(trim($this->text));
-        $url = 'http://api.pullword.com/get.php?source=' . $text . '&param1=1&param2=1&json=1';
+        $url = 'http://api.pullword.com/get.php?source=' . $text . '&param1=1&param2=1&json=0';
         $source = curl_init();
         curl_setopt($source, CURLOPT_URL, $url);
         curl_setopt($source, CURLOPT_RETURNTRANSFER, true);
@@ -38,6 +38,7 @@ class PullWord extends ServiceAbstract
         curl_setopt($source, CURLOPT_HTTPHEADER, $header);
         $message = curl_exec($source);
         curl_close($source);
-        return json_decode($message, true);
+        //将抽词结果数据结构改成一个一维数组
+        return array_count_values(explode(':1', trim($message)));
     }
 }
