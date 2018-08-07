@@ -32,9 +32,12 @@ class Index extends CommandAbstract
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         // 调用采集服务
-//        $service = $this->service('Collection\Collection');
-//        $service->host = $this->host;
-        $service = $this->service('Yivian\Format');
-        $service->run();
+        $collection = $this->service('Collection\Collection');
+        $collection->host = $this->host;
+        $collection->run();
+        //调用提取服务
+//        $format = $this->service('Formatdata\Format');
+//        $format->host = $this->host;
+//        $format->run();
     }
 }

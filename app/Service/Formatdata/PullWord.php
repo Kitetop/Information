@@ -30,7 +30,7 @@ class PullWord extends ServiceAbstract
         );
         //Pullword Api请求格式,避免字符串过长不能截取的问题
         $text = urlencode(substr(trim($this->text),0,5000));
-        $url = 'http://api.pullword.com/get.php?source=' . $text . '&param1=1&param2=1&json=0';
+        $url = 'http://120.26.6.172/get.php?source=' . $text . '&param1=1&param2=1&json=0';
         $source = curl_init();
         curl_setopt($source, CURLOPT_URL, $url);
         curl_setopt($source, CURLOPT_RETURNTRANSFER, true);

@@ -11,6 +11,7 @@ use Mx\Service\ServiceAbstract;
  * 循环遍历配制文件中的url相关配置，并根据相关的配置项调用相关服务
  * 使用简单工厂模式，实现代码复用以及结构的清晰,对于增加配置也比较方便，不用
  * 大幅度修改原有代码
+ * 收集文章的入口文件
  */
 class Collection extends ServiceAbstract
 {

@@ -10,7 +10,7 @@ use App\Biz\YivianNews;
 /**
  * Class GetContent
  * @package App\Service\Formatdata
- * @return
+ * @return false|true 代表是否美化完成
  *
  * 映维网的文章处理服务
  */
@@ -21,7 +21,7 @@ class GetContent extends ServiceAbstract
         // TODO: Implement execute() method.
         $content = (new YivianNews())->dao()->findOne(['format' => false]);
         if (false == $content->exist()) {
-            throw new Exc('没有更多文章需要处理了哦');
+            return false;
         }
         $result = $this->call('Formatdata\GetContent', [
             'object' => $content,
@@ -37,5 +37,6 @@ class GetContent extends ServiceAbstract
             'title' => $content->title,
             'id' => $content->id,
         ]);
+        return true;
     }
 }

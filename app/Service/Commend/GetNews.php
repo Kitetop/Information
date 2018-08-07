@@ -31,8 +31,9 @@ class GetNews extends ServiceAbstract
     private function getItem($item)
     {
         $row = $item->export();
+        unset($row['edit']);
+        unset($row['id']);
         unset($row['count']);
-        unset($row['grade']);
         return $row;
     }
 }

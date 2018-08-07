@@ -29,6 +29,7 @@ class WordResult extends ServiceAbstract
         $content = $this->call('Formatdata\PullWord', [
             'text' => $this->content['content'],
         ]);
+        var_dump($content);
         foreach ($this->paragraph as $key => $value) {
             if ($value['paragraph'] == '') {
                 continue;
@@ -56,6 +57,8 @@ class WordResult extends ServiceAbstract
         $theme->count = 0;
         //是否编辑字段
         $theme->edit = false;
+        //相关度
+        $theme->degree = $compare;
         $theme->save();
         $this->object->format = true;
         $this->object->save();

@@ -1,0 +1,22 @@
+#!/usr/bin/env php
+<?php
+
+namespace App;
+
+/*
+ * 内置工具 包含 项目初始化、构建、发布
+ */
+
+use App\Kernel\Console;
+use Symfony\Component\Console\Input\ArgvInput;
+use Symfony\Component\Console\Input\InputDefinition;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputOption;
+use App\Console\Index;
+
+include __DIR__ . '/../vendor/autoload.php';
+$host = require __DIR__ . '/../app/config/urllist.php';
+$application = new Console();
+$application->add(new Index($host));
+//$application->setDefaultCommand($command->getName(), true);
+$application->run();

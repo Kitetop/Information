@@ -1,0 +1,31 @@
+<?php
+
+namespace App\Service\Formatdata;
+
+use Mx\Service\ServiceAbstract;
+
+/**
+ * Class Format
+ * @package App\Service\Formatdata
+ *
+ * 文本内容提取的入口文件
+ */
+class Format extends ServiceAbstract
+{
+    protected function execute()
+    {
+        // TODO: Implement execute() method.
+        foreach ($this->host as $key => $value) {
+            switch ($key) {
+                case 'yivian':
+                    while ($this->call('Yivian\Format')){};
+                    break;
+                case 'chinaar':
+                    $service = $this->call('Collection\CollectionChinaar');
+                    $service->url = $value['url'];
+                    $service->rule = $value['rules'];
+                    break;
+            }
+        }
+    }
+}
