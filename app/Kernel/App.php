@@ -39,9 +39,10 @@ class App extends AppAbstract
     public function routes()
     {
         $routes = [
-            ['path' => '/', 'action' => 'Main','method' => 'GET'],
-            ['path' =>'news', 'action' => 'Commend\GetNews','method' => 'GET'],
-
+            ['path' => '/', 'action' => 'Main', 'method' => 'GET'],
+            ['path' => 'news', 'action' => 'Commend\GetNews', 'method' => 'GET'],
+            ['path' => 'edit', 'action' => 'Edit\EditNews', 'method' => 'GET'],
+            ['path' => 'edit', 'action' => 'Edit\EditNews', 'method' => 'POST'],
         ];
         return $routes;
     }

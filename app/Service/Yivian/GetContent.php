@@ -36,6 +36,7 @@ class GetContent extends ServiceAbstract
             'url' => $content->url,
             'title' => $content->title,
             'id' => $content->id,
+            'from' => 'yivian',
         ]);
         return true;
     }

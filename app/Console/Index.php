@@ -36,8 +36,8 @@ class Index extends CommandAbstract
         $collection->host = $this->host;
         $collection->run();
         //调用提取服务
-//        $format = $this->service('Formatdata\Format');
-//        $format->host = $this->host;
-//        $format->run();
+        $format = $this->service('Formatdata\Format');
+        $format->host = $this->host;
+        $format->run();
     }
 }

@@ -32,8 +32,8 @@ class GetNews extends ServiceAbstract
     {
         $row = $item->export();
         unset($row['edit']);
-        unset($row['id']);
         unset($row['count']);
+        unset($row['degree']);
         return $row;
     }
 }

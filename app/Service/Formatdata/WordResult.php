@@ -55,6 +55,8 @@ class WordResult extends ServiceAbstract
         $theme->articleId = $this->id;
         $theme->url = $this->url;
         $theme->title = $this->title;
+        //文章纯文本
+        $theme->content = $this->content['content'];
         $theme->paragraph = $this->paragraph[$valueKey]['paragraph'];
         //点击量
         $theme->count = 0;
@@ -62,6 +64,7 @@ class WordResult extends ServiceAbstract
         $theme->edit = false;
         //相关度
         $theme->degree = $compare;
+        $theme->from = $this->from;
         $theme->save();
         $this->object->format = true;
         $this->object->save();
