@@ -2,6 +2,7 @@
 
 namespace App\Service\Formatdata;
 
+use App\Service\Exc;
 use Mx\Service\ServiceAbstract;
 use App\Biz\Theme;
 
@@ -29,7 +30,9 @@ class WordResult extends ServiceAbstract
         $content = $this->call('Formatdata\PullWord', [
             'text' => $this->content['content'],
         ]);
-        var_dump($content);
+        if(!isset($content)){
+            throw new Exc('文本解析出错',500);
+        }
         foreach ($this->paragraph as $key => $value) {
             if ($value['paragraph'] == '') {
                 continue;
