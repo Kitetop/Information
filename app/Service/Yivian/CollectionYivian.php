@@ -28,6 +28,7 @@ class CollectionYivian extends ServiceAbstract
             'rules' => $this->rules,
         ]);
         //如果信息为空则说明文章采集服务挂了
+        
         if (!isset($service)) {
             throw new Exc('采集服务出错',500);
         }
