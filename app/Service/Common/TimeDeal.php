@@ -18,7 +18,6 @@ use Mx\Service\ServiceAbstract;
  * @package App\Service\Common
  * @return double $time 单位为小时
  */
-
 class TimeDeal extends ServiceAbstract
 {
     protected function execute()
@@ -32,9 +31,11 @@ class TimeDeal extends ServiceAbstract
             + $diff->format('%h')
             + $diff->format('%i') / 60
             + $diff->format('%s') / 3600;
-        $time = $this->call('Common\TimeChange',[
-            'time' => $time
-        ]);
+        if ($this->format) {
+            $time = $this->call('Common\TimeChange', [
+                'time' => $time,
+            ]);
+        }
         return $time;
     }
 

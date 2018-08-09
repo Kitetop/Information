@@ -18,12 +18,16 @@ class GetNews extends ServiceAbstract
     {
         // TODO: Implement execute() method.
         //先只从映维网上获得新闻信息
-        $result = Theme::makeDao()->page($this->page, $this->limit ?: 10)
-            ->order('_id', 'DESC')
+        $result = Theme::makeDao()->page($this->page, $this->limit ?: 20)
+            ->order('collectionTime', 'DESC')
             ->find();
         $data = $result->export(function ($item) {
             return $this->dataFetch($item);
         });
+        $sort = $this->call('Commend\Sort',[
+           'data' => $data['list'],
+        ]);
+        $data['list'] = $sort;
         return $data;
     }
 

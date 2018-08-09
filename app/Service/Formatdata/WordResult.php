@@ -3,6 +3,7 @@
 namespace App\Service\Formatdata;
 
 use App\Service\Exc;
+use MongoDB\BSON\UTCDateTime;
 use Mx\Service\ServiceAbstract;
 use App\Biz\Theme;
 
@@ -65,6 +66,7 @@ class WordResult extends ServiceAbstract
         //相关度
         $theme->degree = $compare;
         $theme->from = $this->from;
+        $theme->collectionTime = new UTCDateTime();
         $theme->save();
         $this->object->format = true;
         $this->object->save();
