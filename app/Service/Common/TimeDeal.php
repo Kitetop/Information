@@ -32,6 +32,9 @@ class TimeDeal extends ServiceAbstract
             + $diff->format('%h')
             + $diff->format('%i') / 60
             + $diff->format('%s') / 3600;
+        $time = $this->call('Common\TimeChange',[
+            'time' => $time
+        ]);
         return $time;
     }
 

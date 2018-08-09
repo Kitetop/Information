@@ -1,5 +1,7 @@
 <?php
 /**
+ * 给后台显示相关的待编辑 | 已编辑的文章信息
+ *
  * @author Kitetop <xieshizhen@duxze.com>
  * @version Release: 0.9
  * Date: 2018/8/8
@@ -14,14 +16,45 @@ use App\Biz\Theme;
 
 class EditNews extends ServiceAbstract
 {
+    /**
+     * @return mixed $data 存储文章信息的二维数组
+     */
     protected function execute()
     {
         // TODO: Implement execute() method.
-        $theme = new Theme(['id' => $this->id]);
-        if(false == $theme->exist()){
-            throw new Exc('无效的编号',400);
+        if ($this->edit) {
+            //显示已经编辑的文章
+            $result = Theme::makeDao()->page($this->page, $this->limit ?: 10)
+                ->order('changeTime', 'DESC')
+                ->find(['edit' => true]);
+            $data = $result->export(function ($item){
+               return $this->dataFetch($item);
+            });
+            foreach ($data['list'] as  &$value) {
+                $value ['changeTime'] = $this->callService('Common\TimeDeal', [
+                    'time' => $value['changeTime']
+                ]);
+            }
+        } else {
+            $result = Theme::makeDao()->page($this->page, $this->limit ?: 10)
+                ->order('degree', 'ASC')
+                ->find(['edit' => false]);
+            $data = $result->export(function ($item){
+                return $this->dataFetch($item);
+            });
         }
-        return $theme;
+        return $data;
+    }
+    //将对象里面的数据提取为纯的数组数组类型
+    private function dataFetch($item)
+    {
+        $row = $item->export();
+        unset($row['content']);
+        unset($row['articleId']);
+        unset($row['url']);
+        unset($row['edit']);
+        unset($row['count']);
+        return $row;
     }
 
 }

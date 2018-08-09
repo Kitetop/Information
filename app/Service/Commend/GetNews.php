@@ -22,13 +22,13 @@ class GetNews extends ServiceAbstract
             ->order('_id', 'DESC')
             ->find();
         $data = $result->export(function ($item) {
-            return $this->getItem($item);
+            return $this->dataFetch($item);
         });
         return $data;
     }
 
     //对数据进行处理，得到纯数据类型
-    private function getItem($item)
+    private function dataFetch($item)
     {
         $row = $item->export();
         unset($row['edit']);

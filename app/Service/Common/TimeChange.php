@@ -13,9 +13,8 @@ use Mx\Service\ServiceAbstract;
 /**
  * Class TimeChange
  * @package App\Service\Common
- * @return string 'd-h-m' | 'h-m'
+ * @return string X天前 | X小时前 | X分钟前
  */
-
 class TimeChange extends ServiceAbstract
 {
     protected function execute()
@@ -23,13 +22,13 @@ class TimeChange extends ServiceAbstract
         // TODO: Implement execute() method.
         if ($this->time > 24) {
             $d = floor($this->time / 24);
-            $h = $this->time % 24;
-            $m = floor(($this->time - $d * 24 - $h) * 60);
-            return $d.'-'.$h.'-'.$m;
-        } else {
+            return $d . '天前';
+        } else if (floor($this->time) > 0) {
             $h = floor($this->time);
-            $m = floor(($this->time - $h)*60);
-            return $h.'-'.$m;
+            return $h . '小时前';
+        } else {
+            $m = floor($this->time * 60)>0 ?floor($this->time * 60):1;
+            return $m.'分钟前';
         }
     }
 
