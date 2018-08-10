@@ -31,6 +31,7 @@ class TimeDeal extends ServiceAbstract
             + $diff->format('%h')
             + $diff->format('%i') / 60
             + $diff->format('%s') / 3600;
+        // 判断文章是否需要进行美化
         if ($this->format) {
             $time = $this->call('Common\TimeChange', [
                 'time' => $time,

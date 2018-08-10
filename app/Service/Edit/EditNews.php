@@ -30,7 +30,7 @@ class EditNews extends ServiceAbstract
             $data = $result->export(function ($item){
                return $this->dataFetch($item);
             });
-            foreach ($data['list'] as  &$value) {
+            foreach ($data['list'] as  $value) {
                 $value ['changeTime'] = $this->call('Common\TimeDeal', [
                     'time' => $value['changeTime'],
                     'format' => true,
