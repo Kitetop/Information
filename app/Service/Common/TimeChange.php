@@ -22,6 +22,9 @@ class TimeChange extends ServiceAbstract
         // TODO: Implement execute() method.
         if ($this->time > 24) {
             $d = floor($this->time / 24);
+            if($d>99){
+                return '99+ 天前';
+            }
             return $d . '天前';
         } else if (floor($this->time) > 0) {
             $h = floor($this->time);

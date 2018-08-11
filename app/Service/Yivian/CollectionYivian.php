@@ -29,7 +29,7 @@ class CollectionYivian extends ServiceAbstract
         ]);
         //如果信息为空则说明文章采集服务挂了
         if (!isset($service)) {
-            throw new Exc('采集服务出错',500);
+            throw new Exc('采集服务出错', 500);
         }
         foreach ($service as $key => $value) {
             $news = $news->dao()->findOne(['url' => $value['url'], 'name' => 'yivian']);
@@ -47,6 +47,9 @@ class CollectionYivian extends ServiceAbstract
                 'url' => $value['url'],
                 'rules' => $rules['rules'],
             ]);
+            if (isset($content)) {
+                continue;
+            }
             $content = str_replace(PHP_EOL, '', $content[0]['content']);
             $this->call('Collection\SaveNews', [
                 'name' => 'yivian',

@@ -53,22 +53,25 @@ class WordResult extends ServiceAbstract
         }
         //此时$compare的值存储选中的段落信息
         $theme = new Theme();
-        $theme->articleId = $this->id;
-        $theme->url = $this->url;
-        $theme->title = $this->title;
-        //文章纯文本
-        $theme->content = $this->content['content'];
-        $theme->paragraph = $this->paragraph[$valueKey]['paragraph'];
-        //点击量
-        $theme->count = 0;
-        //是否编辑字段
-        $theme->edit = false;
-        //相关度
-        $theme->degree = $compare;
-        $theme->from = $this->from;
-        $theme->collectionTime = new UTCDateTime();
-        $theme->save();
-        $this->object->format = true;
-        $this->object->save();
+        try {
+            $theme->url = $this->url;
+            $theme->title = $this->title;
+            //文章纯文本
+            $theme->content = $this->content['content'];
+            $theme->paragraph = $this->paragraph[$valueKey]['paragraph'];
+            //点击量
+            $theme->count = 0;
+            //是否编辑字段
+            $theme->edit = false;
+            //相关度
+            $theme->degree = $compare;
+            $theme->from = $this->from;
+            $theme->collectionTime = new UTCDateTime();
+            $theme->save();
+            $this->object->format = true;
+            $this->object->save();
+        }catch (\exception $e) {
+            throw new Exc('文章提取入库失败:'.$e->getMessage(),500);
+        }
     }
 }

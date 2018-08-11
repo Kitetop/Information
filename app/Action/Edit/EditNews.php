@@ -60,6 +60,7 @@ class EditNews extends ActionAbstract
         $url = $this->config('realUrl') . 'edit?';
         list($result['prev'], $result['next']) = Page::simple($result['meta'], $url, $this->props);
         $result['list'] = (array)$result['list'];
+        unset($result['meta']);
         //todo 返回格式待定，需要返回文章的id
         $this->response($result);
         $this->code(200);

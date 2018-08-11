@@ -27,11 +27,11 @@ class EditNews extends ServiceAbstract
             $result = Theme::makeDao()->page($this->page, $this->limit ?: 10)
                 ->order('changeTime', 'DESC')
                 ->find(['edit' => true]);
-            $data = $result->export(function ($item){
-               return $this->dataFetch($item);
+            $data = $result->export(function ($item) {
+                return $this->dataFetch($item);
             });
-            foreach ($data['list'] as  $value) {
-                $value ['changeTime'] = $this->call('Common\TimeDeal', [
+            foreach ($data['list'] as $key => $value) {
+                $data['list'][$key]['changeTime'] = $this->call('Common\TimeDeal', [
                     'time' => $value['changeTime'],
                     'format' => true,
                 ]);
@@ -40,18 +40,20 @@ class EditNews extends ServiceAbstract
             $result = Theme::makeDao()->page($this->page, $this->limit ?: 10)
                 ->order('degree', 'ASC')
                 ->find(['edit' => false]);
-            $data = $result->export(function ($item){
+            $data = $result->export(function ($item) {
                 return $this->dataFetch($item);
             });
         }
         return $data;
     }
+
     //将对象里面的数据提取为纯的数组数组类型
     private function dataFetch($item)
     {
         $row = $item->export();
-        unset($row['content']);
-        unset($row['articleId']);
+        unset($row['id']);
+        unset($row['collectionTime']);
+        unset($row['commendTime']);
         unset($row['url']);
         unset($row['edit']);
         unset($row['count']);

@@ -35,7 +35,6 @@ class GetContent extends ServiceAbstract
             'paragraph' => $result[1],
             'url' => $content->url,
             'title' => $content->title,
-            'id' => $content->id,
             'from' => 'yivian',
         ]);
         return true;

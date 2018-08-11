@@ -1,47 +1,41 @@
 <?php
+/**
+ * @author Kitetop <xieshizhen@duxze.com>
+ * @version Release: v1.0
+ * Date: 2018/8/11
+ *
+ * 得到推荐的文章内容
+ */
 
 namespace App\Service\Commend;
 
-use Mx\Service\ServiceAbstract;
-use App\Biz\Theme;
 
-/**
- * Class GetNews
- * @package App\Service\Commend
- * @return 返回得到处理后的数组类型数据
- *
- * 获得处理后的文章内容
- */
+use Mx\Service\ServiceAbstract;
+use App\Biz\Commend;
+
 class GetNews extends ServiceAbstract
 {
     protected function execute()
     {
         // TODO: Implement execute() method.
-        //先只从映维网上获得新闻信息
-        $theme = new Theme();
         $config = require __DIR__ . '/config.php';
-        $result = Theme::makeDao()->page(1, $config['article'])
-            ->order('collectionTime', 'DESC')
+        $result = Commend::makeDao()->page($this->page, $config['commend'])
+            ->order('_id', 'ASC')
             ->find();
         $data = $result->export(function ($item) {
             return $this->dataFetch($item);
         });
-        $sort = $this->call('Commend\GetTarget', [
-            'data' => $data['list'],
-            'common' => $config['common'],
-            'object' => $theme,
-        ]);
-        $data['list'] = $sort;
         return $data;
     }
 
-    //对数据进行处理，得到纯数据类型
+    //将对象里面的数据提取为纯的数组数组类型
     private function dataFetch($item)
     {
         $row = $item->export();
-        unset($row['articleId']);
         unset($row['content']);
-        unset($row['from']);
+        unset($row['url']);
+        unset($row['edit']);
+        unset($row['count']);
         return $row;
     }
 }
