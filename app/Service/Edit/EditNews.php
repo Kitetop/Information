@@ -51,7 +51,6 @@ class EditNews extends ServiceAbstract
     private function dataFetch($item)
     {
         $row = $item->export();
-        unset($row['id']);
         unset($row['collectionTime']);
         unset($row['commendTime']);
         unset($row['url']);

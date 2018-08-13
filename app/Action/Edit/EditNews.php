@@ -32,7 +32,7 @@ class EditNews extends ActionAbstract
         'limit' => [
             'desc' => '每一页的数据存储',
             'rules' => ['Logic:gte:0'],
-            'default' => 10
+            'default' => 5
         ],
     ];
     protected $postRules = [

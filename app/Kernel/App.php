@@ -42,6 +42,7 @@ class App extends AppAbstract
             ['path' => '/', 'action' => 'Main', 'method' => 'GET'],
             //推荐给用户
             ['path' => 'news', 'action' => 'Commend\GetNews', 'method' => 'GET'],
+            ['path' => 'news/details', 'action' => 'Commend\GetDetails', 'method' => 'GET'],
             //文章的编辑,供后台使用
             ['path' => 'edit', 'action' => 'Edit\EditNews', 'method' => 'GET'],
             ['path' => 'edit', 'action' => 'Edit\EditNews', 'method' => 'POST'],

@@ -17,6 +17,6 @@ $config['article'] = 20;
 
 //推荐文章数量
 
-$config['commend'] = 10;
+$config['commend'] = 5;
 
 return $config;
