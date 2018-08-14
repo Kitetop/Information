@@ -46,6 +46,7 @@ class App extends AppAbstract
             //文章的编辑,供后台使用
             ['path' => 'edit', 'action' => 'Edit\EditNews', 'method' => 'GET'],
             ['path' => 'edit', 'action' => 'Edit\EditNews', 'method' => 'POST'],
+            ['path' => 'edit/delete', 'action' => 'Edit\DeleteArticle', 'method' => 'GET'],
         ];
         return $routes;
     }
