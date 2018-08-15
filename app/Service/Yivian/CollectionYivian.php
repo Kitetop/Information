@@ -34,6 +34,7 @@ class CollectionYivian extends ServiceAbstract
         foreach ($service as $key => $value) {
             $news = $news->dao()->findOne(['url' => $value['url'], 'name' => 'yivian']);
             if (true == $news->exist()) {
+                $this->addIndex($service[0]['url']);
                 break;
             }
             //当页面全部都是新的内容的时候也应该存储索引

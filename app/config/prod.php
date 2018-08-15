@@ -23,7 +23,7 @@ $config['action'] = [
 ];
 if (PHP_SAPI !='cli')
 {
-    $config['rootUrl']="http://10.0.27.200:8090";
+    $config['rootUrl']="http://10.0.20.198:8090";
     $config['realUrl']=$config['rootUrl'].$config['action']['base'];
     $config['assetUrl']=$config['rootUrl'].'/assets';
 }else{

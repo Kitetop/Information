@@ -20,4 +20,12 @@ $host ['chinaar'] = [
         'title' => ['h2.media-heading', 'text'],
     ],
 ];
+
+$host ['arinchina'] = [
+  'url' => 'http://www.arinchina.com/news/',
+  'rules' => [
+    'url' => ['div.wzxq li.wzbt a','href'],
+    'title' =>['div.wzxq li.wzbt', 'text'],
+  ],
+];
 return $host;

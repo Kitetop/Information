@@ -7,14 +7,14 @@
  * Date: 2018/8/15
  */
 
-namespace App\Service\Chinaar;
+namespace App\Service\ARinChina;
 
 
+use Mx\Service\ServiceAbstract;
 use App\Biz\News;
 use App\Service\Exc;
-use Mx\Service\ServiceAbstract;
 
-class CollectionChinaar extends ServiceAbstract
+class CollectionARinChina extends ServiceAbstract
 {
     protected function execute()
     {
@@ -22,14 +22,14 @@ class CollectionChinaar extends ServiceAbstract
         $rules = require __DIR__.'/config.php';
         $news = new News();
         $service = $this->call('Collection\GrabSource',[
-           'url' => $this->url,
-           'rules' => $this->rules,
+            'url' => $this->url,
+            'rules' => $this->rules,
         ]);
         if(!isset($service)) {
             throw new Exc('采集服务出错',500);
         }
         foreach ($service as $key => $value) {
-            $news = $news->dao()->findOne(['url' => $value['url'], 'name' => 'chinaar']);
+            $news = $news->dao()->findOne(['url' => $value['url'], 'name' => 'arinchina']);
             if (true == $news->exist()) {
                 $this->addIndex($service[0]['url']);
                 break;
@@ -48,7 +48,7 @@ class CollectionChinaar extends ServiceAbstract
             }
             $content = str_replace(PHP_EOL, '', $content[0]['content']);
             $this->call('Collection\SaveNews', [
-                'name' => 'chinaar',
+                'name' => 'arinchina',
                 'url' => $value['url'],
                 'title' => $value['title'],
                 'content' => $content,
@@ -59,8 +59,7 @@ class CollectionChinaar extends ServiceAbstract
     {
         $this->call('Collection\SaveIndex', [
             'url' => $url,
-            'name' => 'chinaar',
+            'name' => 'arinchina',
         ]);
     }
-
 }

@@ -1,16 +1,16 @@
 <?php
 /**
- * Chinaar文章处理服务
+ * ARinChina文章处理服务
  *
  * @author Kitetop <xieshizhen@duxze.com>
  * @version Release: v1.0
  * Date: 2018/8/15
  */
 
-namespace App\Service\Chinaar;
+namespace App\Service\ARinChina;
 
 
-use App\Biz\ChinaarNews;
+use App\Biz\ARinChinaNews;
 use Mx\Service\ServiceAbstract;
 
 class GetContent extends ServiceAbstract
@@ -18,7 +18,7 @@ class GetContent extends ServiceAbstract
     protected function execute()
     {
         // TODO: Implement execute() method.
-        $content = (new ChinaarNews())->dao()->findOne(['format' => false]);
+        $content = (new ARinChinaNews())->dao()->findOne(['format' => false]);
         if (false == $content->exist()) {
             return false;
         }
@@ -34,7 +34,7 @@ class GetContent extends ServiceAbstract
             'paragraph' => $result[1],
             'url' => $content->url,
             'title' => $content->title,
-            'from' => 'chinaar',
+            'from' => 'arinchina',
         ]);
         return true;
     }

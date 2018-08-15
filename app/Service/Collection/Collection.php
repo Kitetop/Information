@@ -32,6 +32,12 @@ class Collection extends ServiceAbstract
                         'rules' => $value['rules'],
                     ]);
                     break;
+                case 'arinchina':
+                    $this->call('ARinChina\CollectionARinChina',[
+                        'url' => $value['url'],
+                        'rules' => $value['rules'],
+                    ]);
+                    break;
             }
         }
     }

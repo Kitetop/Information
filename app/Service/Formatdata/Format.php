@@ -25,6 +25,10 @@ class Format extends ServiceAbstract
                     while ($this->call('Chinaar\Format')) {
                     };
                     break;
+                case 'arinchina':
+                    while ($this->call('ARinChina\Format')) {
+                    };
+                    break;
             }
         }
     }
