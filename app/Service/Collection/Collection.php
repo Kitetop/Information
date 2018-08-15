@@ -27,9 +27,10 @@ class Collection extends ServiceAbstract
                     ]);
                     break;
                 case 'chinaar':
-                    $service = $this->call('Collection\CollectionChinaar');
-                    $service->url = $value['url'];
-                    $service->rule = $value['rules'];
+                    $this->call('Chinaar\CollectionChinaar',[
+                        'url' => $value['url'],
+                        'rules' => $value['rules'],
+                    ]);
                     break;
             }
         }

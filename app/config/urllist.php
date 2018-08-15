@@ -1,4 +1,5 @@
 <?php
+
 namespace App;
 
 /**
@@ -7,8 +8,16 @@ namespace App;
 $host ['yivian'] = [
     'url' => 'https://yivian.com/news',
     'rules' => [
-        'url' => ['h2.post-title a','href'],
-        'title' => ['h2.post-title','text']
+        'url' => ['h2.post-title a', 'href'],
+        'title' => ['h2.post-title', 'text']
     ],
 ];
- return $host;
+
+$host ['chinaar'] = [
+    'url' => 'http://www.chinaar.com/ARzx/',
+    'rules' => [
+        'url' => ['h2.media-heading a','href'],
+        'title' => ['h2.media-heading', 'text'],
+    ],
+];
+return $host;

@@ -18,12 +18,12 @@ class Format extends ServiceAbstract
         foreach ($this->host as $key => $value) {
             switch ($key) {
                 case 'yivian':
-                    while ($this->call('Yivian\Format')){};
+                    while ($this->call('Yivian\Format')) {
+                    };
                     break;
                 case 'chinaar':
-                    $service = $this->call('Collection\CollectionChinaar');
-                    $service->url = $value['url'];
-                    $service->rule = $value['rules'];
+                    while ($this->call('Chinaar\Format')) {
+                    };
                     break;
             }
         }

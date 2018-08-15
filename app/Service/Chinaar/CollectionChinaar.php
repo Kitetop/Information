@@ -1,38 +1,35 @@
 <?php
+/**
+ * ChinaAr信息采集服务
+ *
+ * @author Kitetop <xieshizhen@duxze.com>
+ * @version Release: v1.0
+ * Date: 2018/8/15
+ */
 
-namespace App\Service\Yivian;
+namespace App\Service\Chinaar;
 
+
+use App\Biz\News;
 use App\Service\Exc;
 use Mx\Service\ServiceAbstract;
-use QL\QueryList;
-use App\Biz\News;
 
-
-/**
- * Class CollectionYivian
- * @package App\Service\Yivian
- *
- * 映维网信息采集服务
- */
-class CollectionYivian extends ServiceAbstract
+class CollectionChinaar extends ServiceAbstract
 {
     protected function execute()
     {
         // TODO: Implement execute() method.
-        //给每一个爬取文章设置规则
-        $rules = require __DIR__ . '/config.php';
+        $rules = require __DIR__.'/config.php';
         $news = new News();
-        //$service是一个二维数组，存储了提取值的url列表以及标题
-        $service = $this->call('Collection\GrabSource', [
-            'url' => $this->url,
-            'rules' => $this->rules,
+        $service = $this->call('Collection\GrabSource',[
+           'url' => $this->url,
+           'rules' => $this->rules,
         ]);
-        //如果信息为空则说明文章采集服务挂了
-        if (!isset($service)) {
-            throw new Exc('采集服务出错', 500);
+        if(!isset($service)) {
+            throw new Exc('采集服务出错',500);
         }
         foreach ($service as $key => $value) {
-            $news = $news->dao()->findOne(['url' => $value['url'], 'name' => 'yivian']);
+            $news = $news->dao()->findOne(['url' => $value['url'], 'name' => 'chinaar']);
             if (true == $news->exist()) {
                 break;
             }
@@ -50,19 +47,19 @@ class CollectionYivian extends ServiceAbstract
             }
             $content = str_replace(PHP_EOL, '', $content[0]['content']);
             $this->call('Collection\SaveNews', [
-                'name' => 'yivian',
+                'name' => 'chinaar',
                 'url' => $value['url'],
                 'title' => $value['title'],
                 'content' => $content,
             ]);
         }
     }
-
     private function addIndex($url)
     {
         $this->call('Collection\SaveIndex', [
             'url' => $url,
-            'name' => 'yivian',
+            'name' => 'chinaar',
         ]);
     }
+
 }
