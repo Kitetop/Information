@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Service\Collection;
 
 use App\Service\Exc;
@@ -16,7 +17,7 @@ class SaveNews extends ServiceAbstract
     protected function execute()
     {
         // TODO: Implement execute() method.
-        switch ($this->name){
+        switch ($this->name) {
             case 'yivian':
                 try {
                     (new YivianNews())->import([
@@ -25,8 +26,8 @@ class SaveNews extends ServiceAbstract
                         'content' => $this->content,
                         'format' => false,
                     ])->save();
-                }catch (\exception $e){
-                    throw new Exc($this->name.'新闻存入数据库失败:'.$e->getMessage(),500);
+                } catch (\exception $e) {
+                    throw new Exc($this->name . '新闻存入数据库失败:' . $e->getMessage(), 500);
                 }
                 break;
         }

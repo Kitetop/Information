@@ -17,7 +17,6 @@ class GetCommend extends ServiceAbstract
     protected function execute()
     {
         // TODO: Implement execute() method.
-        //先只从映维网上获得新闻信息
         $theme = new Theme();
         $config = require __DIR__ . '/config.php';
         $result = Theme::makeDao()->page(1, $config['article'])

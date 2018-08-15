@@ -17,6 +17,8 @@ class GetTarget extends ServiceAbstract
     protected function execute()
     {
         // TODO: Implement execute() method.
+        $primary = [];
+        $commend = [];
         foreach ($this->data as $key => $value) {
             if (isset($value['commendTime'])) {
                 //已经推荐过的文章

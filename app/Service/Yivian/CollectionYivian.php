@@ -47,7 +47,7 @@ class CollectionYivian extends ServiceAbstract
                 'url' => $value['url'],
                 'rules' => $rules['rules'],
             ]);
-            if (isset($content)) {
+            if (!isset($content)) {
                 continue;
             }
             $content = str_replace(PHP_EOL, '', $content[0]['content']);
