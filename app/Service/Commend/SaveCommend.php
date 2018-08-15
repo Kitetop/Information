@@ -23,6 +23,11 @@ class SaveCommend extends ServiceAbstract
         foreach ($this->target as $key => $value) {
             try {
                 $commend = new Commend();
+                //初步是对文章相同的就不进行推荐
+                $title = $commend->dao()->findOne(['title' => $this->data[$key]['title']]);
+                if(true == $title->exist()) {
+                    continue;
+                }
                 $commend->title = $this->data[$key]['title'];
                 $commend->url = $this->data[$key]['url'];
                 $commend->paragraph = $this->data[$key]['paragraph'];
