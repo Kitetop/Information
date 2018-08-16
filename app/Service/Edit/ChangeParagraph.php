@@ -24,9 +24,9 @@ class ChangeParagraph extends ServiceAbstract
     protected function execute()
     {
         // TODO: Implement execute() method.
-        $theme = new Theme(['id' =>$this->id]);
-        if(false == $theme->exist()){
-            throw new Exc('无效的编号',400);
+        $theme = new Theme(['id' => $this->id]);
+        if (false == $theme->exist()) {
+            throw new Exc('无效的编号', 400);
         }
         $theme->paragraph = $this->paragraph;
         $theme->edit = true;
