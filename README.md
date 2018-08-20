@@ -1,9 +1,9 @@
 # 文章咨询聚合系统
 
 > 开始
+
 ````
 1. git clone https://git.duxze.com/xieshizhen/Infor.git
-
 2. composer insatll
  
 ````
@@ -93,24 +93,21 @@
                       
 ````
 > 已有API
+
 ````
 1. 得到每日推荐资讯
    HOST/news => eg: 10.0.27.200/news method => GET
-
 2. 去除主题相关度不高的资讯
    HOST/edit/delete => eg: 10.0.27.200/edit/delete method => GET (使用axios测试的时候使用delete不成功，但是使用postman可以测通，为了让前端使用，将方法改成了 GET)
-
 3. 得到主题相关度情况的咨询
-   HOST/edit => eg: 10.0.27.200/edit method => GET
-   
+   HOST/edit => eg: 10.0.27.200/edit method => GET  
 4. 修改抽取的资讯段落，进行编辑
-   HOST/edit => eg: 10.0.27.200/edit method => POST
-   
+   HOST/edit => eg: 10.0.27.200/edit method => POST  
 5. 获得文章详情
-   HOST/news/details => eg: 10.0.27.200/news/details method => GET
-   
+   HOST/news/details => eg: 10.0.27.200/news/details method => GET  
 6. 记录用户的点击数量
    HOST/news/count => eg: 10.0.27.200/news/count method => GET
+   
 ````
 
        
