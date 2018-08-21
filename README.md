@@ -5,7 +5,16 @@
 ````
 1. git clone https://git.duxze.com/xieshizhen/Infor.git
 2. composer insatll
+3. bin/console start // 开始抓取更新的文章
+4. bin/console commend // 获得每日推荐文章
  
+````
+
+> 已有站点
+
+````
+1. app/config/urllist.php(中设置要定向爬取的站点即可)
+   已有：映维网、ChinaAR、ARinChina
 ````
 > 目录结构
 
