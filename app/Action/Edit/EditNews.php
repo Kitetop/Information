@@ -55,7 +55,7 @@ class EditNews extends ActionAbstract
         $edit = $this->service('Edit\EditNews');
         $edit->page = $this->props['page'];
         $edit->limit = $this->props['limit'];
-        $edit->edit = $this->props['edit'];
+        $edit->edit = isset($this->props['edit']) ? true : false;
         $result = $edit->run();
         $url = $this->config('realUrl') . 'edit?';
         list($result['prev'], $result['next']) = Page::simple($result['meta'], $url, $this->props);

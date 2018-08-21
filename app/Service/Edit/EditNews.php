@@ -54,10 +54,9 @@ class EditNews extends ServiceAbstract
         unset($row['collectionTime']);
         unset($row['commendTime']);
         unset($row['url']);
-        if (isset($row['edit'])) {
-            unset($row['edit']);
-        }
+        unset($row['edit']);
         unset($row['count']);
         return $row;
     }
+
 }
