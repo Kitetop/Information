@@ -10,11 +10,13 @@
  
 ````
 
-> 已有站点
+> 介绍
 
 ````
 1. app/config/urllist.php(中设置要定向爬取的站点即可)
    已有：映维网、ChinaAR、ARinChina
+2. 文章内容清洗 => QueryList(一个简单、灵活强大的PHP采集工具)
+   https://www.querylist.cc/
 ````
 > 目录结构
 
